@@ -1,7 +1,7 @@
 const express = require('express');
+const { route } = require('express/lib/application');
 const router = express.Router();
-const CollegeController = require("../controllers/collegeController")
-const StudentController = require("../controllers/studentController")
+const urlShortController = require("../controllers/urlShortController")
 
 
 
@@ -10,9 +10,9 @@ router.get("/test-me", function (req, res) {
 })
 
 
-router.post("/colleges", CollegeController.createrCollege)
-router.post("/interns", StudentController.createStudent)
-router.get("/collegeDetails", StudentController.collegeDetails)
+router.post("/url/shorten", urlShortController.shortenUrl)
+router.get("/:urlCode", urlShortController.urlRedrict)
+
 
 
 

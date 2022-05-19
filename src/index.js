@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');         
 const bodyParser = require('body-parser');        
 const route = require('./routes/route.js');        
@@ -8,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));        
 
 
-mongoose.connect("mongodb://localhost:27017/Intern_Project", {                  
+mongoose.connect("mongodb://localhost:27017/UrlShortner", {                  
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
@@ -16,9 +17,9 @@ mongoose.connect("mongodb://localhost:27017/Intern_Project", {
 
 
 
-app.use('/functionup', route);
+app.use('/', route);
 
 
-app.listen(process.env.PORT || 3000, function () {
-    console.log('Express app running on port ' + (process.env.PORT || 3000))
+app.listen(process.env.PORT , function () {
+    console.log('Express app running on port ' + (process.env.PORT))
 });
