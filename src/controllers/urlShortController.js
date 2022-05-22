@@ -71,7 +71,7 @@ let shortenUrl = async function (req, res) {
 
         let url = await Url.findOne({ longUrl })
         if (url) {
-            return res.status(409).send({ status: false, message: "url already Exist" })
+            return res.status(200).send({ data: url })
         }
 
         const shortUrl = baseUrl + '/' + urlCode
@@ -80,7 +80,7 @@ let shortenUrl = async function (req, res) {
         const urlLink = await Url.create({ longUrl, shortUrl, urlCode })
        await SET_ASYNC(`${urlCode}`,`${urlLink.longUrl}`)
         const getUrl = await Url.findById(urlLink.id).select({ _id: 0, __v: 0 })
-        return res.status(200).send({ data: getUrl })
+        return res.status(201).send({ data: getUrl })
     }
 
     catch (err) {
